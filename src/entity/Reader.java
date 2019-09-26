@@ -5,11 +5,13 @@
  */
 package entity;
 
+import java.io.Serializable;
+
 /**
  *
  * @author User
  */
-public class Reader {
+public class Reader implements Serializable {
     private String name;
     private String lastname;
     private String email;
@@ -37,11 +39,4 @@ public class Reader {
     public String toString() {
         return "Reader{" + "name=" + name + ", lastname=" + lastname + ", email=" + email + '}';
     }
-
-    public void email(String string) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    
-
 }
