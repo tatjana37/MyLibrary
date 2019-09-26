@@ -11,6 +11,7 @@ import entity.Book;
 import entity.History;
 import entity.Reader;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Scanner;
 
@@ -28,8 +29,9 @@ public class App {
     List<Book> listBooks = new ArrayList<>();
     List<Reader> listReaders = new ArrayList<>();
     List<History> listHistorys = new ArrayList<>();
-    SaveToFile saveToFile = new SaveToFile();
+    
     public App() {
+       SaveToFile saveToFile = new SaveToFile();
        listBooks = saveToFile.loadBooks();
        listReaders =saveToFile.loadReaders();
        listHistorys = saveToFile.loadHistorys();
@@ -99,6 +101,7 @@ public class App {
                     case "6":
                         System.out.println("Возвращение книги");
                         historyProvider.returnBook(listHistorys);
+                        saveToFile.saveHistorys(listHistorys);
                         break;
                     default:
                         break;
