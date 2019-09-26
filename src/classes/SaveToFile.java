@@ -6,6 +6,7 @@
 package classes;
 
 import entity.Book;
+import entity.History;
 import entity.Reader;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -78,7 +79,6 @@ public class SaveToFile {
          } 
         return listBooks;
     }
-
      public void saveReaders(List<Reader>listReaders) {
         FileOutputStream fileOutputStream = null;
         ObjectOutputStream objectOutputStream = null;
@@ -133,7 +133,60 @@ public class SaveToFile {
          } 
         return listReaders;
     }
-    
+    public void saveHistorys(List<History>listHistorys) {
+        FileOutputStream fileOutputStream = null;
+        ObjectOutputStream objectOutputStream = null;
+        try {
+            fileOutputStream  = new FileOutputStream("Historys.txt");    
+            objectOutputStream  = new ObjectOutputStream(fileOutputStream);
+            objectOutputStream.writeObject(listHistorys);
+            objectOutputStream.flush();
+        } catch (FileNotFoundException ex) {
+            System.out.println("Ошибка : на диске нет файла Historys.txt ");
+        } catch (IOException ex) {
+            System.out.println("Ошибка: записать  в файл не удалось");
+        } finally{
+            if(objectOutputStream != null){
+                try {
+                    objectOutputStream.close();
+                } catch (IOException ex) {
+                    Logger.getLogger(SaveToFile.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        } 
+   }
+    public List<History>loadHistorys(){
+        List<History>listHistorys = new ArrayList<>();
+        FileInputStream fileInputStream = null; 
+         ObjectInputStream objectInputStream = null; 
+        try { 
+           fileInputStream = new FileInputStream("Historys.txt"); 
+            objectInputStream = new ObjectInputStream(fileInputStream); 
+             listHistorys = (List<History>) objectInputStream.readObject(); 
+       } catch (FileNotFoundException ex) { 
+            System.out.println("Ошибка: не найден файл Historys.txt"); 
+       } catch (IOException ex) { 
+            System.out.println("Ошибка: чтение файла Historys.txt не удолось"); 
+         } catch (ClassNotFoundException ex) { 
+             System.out.println("Ошибка: нет класса History"); 
+         }finally{ 
+            if(objectInputStream != null){ 
+                try { 
+                    objectInputStream.close(); 
+               } catch (IOException ex) { 
+                     Logger.getLogger(SaveToFile.class.getName()).log(Level.SEVERE, null, ex); 
+                } 
+            } 
+            if(fileInputStream != null){ 
+                try { 
+                    fileInputStream.close(); 
+                } catch (IOException ex) { 
+                    Logger.getLogger(SaveToFile.class.getName()).log(Level.SEVERE, null, ex); 
+                } 
+             } 
+         } 
+        return listHistorys;
+    }   
 }
 
 

@@ -27,14 +27,15 @@ import java.util.Scanner;
 public class App {
     List<Book> listBooks = new ArrayList<>();
     List<Reader> listReaders = new ArrayList<>();
+    List<History> listHistorys = new ArrayList<>();
     SaveToFile saveToFile = new SaveToFile();
     public App() {
        listBooks = saveToFile.loadBooks();
        listReaders =saveToFile.loadReaders();
+       listHistorys = saveToFile.loadHistorys();
     }
     public void run(){
         Scanner scanner = new Scanner(System.in);
-        List<History> listHistories = new ArrayList<>();
         HistoryProvider historyProvider = new HistoryProvider();
         SaveToFile saveToFile = new SaveToFile();
         boolean flagExit = true;
@@ -92,11 +93,14 @@ public class App {
                     case "5":
                         System.out.println("Выдаем книгу читателю");
                         History history = historyProvider.createHistory(listBooks, listReaders);
-                        listHistories.add(history);
+                        listHistorys.add(history);
+                        saveToFile.saveHistorys(listHistorys);
                         break;
                     case "6":
                         System.out.println("Возвращение книги");
-                        historyProvider.returnBook(listHistories);
+                        historyProvider.returnBook(listHistorys);
+                        break;
+                    default:
                         break;
                 }
         }while(flagExit);

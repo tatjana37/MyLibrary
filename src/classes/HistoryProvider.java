@@ -29,7 +29,6 @@ public class HistoryProvider {
                     ,listBooks.get(i).getYear()
             );
         }
-
         System.out.print("Выберите номер выдаваемой книги:"); 
         int takeBookNum = scanner.nextInt();
         Book book = listBooks.get(takeBookNum-1);
@@ -52,10 +51,10 @@ public class HistoryProvider {
         history.setTakeOn(new Date());
         return history;
     }
-    public void returnBook(List<History> listHistories){
+    public void returnBook(List<History> listHistorys){
         System.out.println("Список читаемых книг");
         int i=1;
-        listHistories.stream().filter((history) -> (history.getReturnDate() == null)).forEach((history) -> {
+        listHistorys.stream().filter((history) -> (history.getReturnDate() == null)).forEach((history) -> {
             System.out.printf("%d. Читатлель %s %s читает книгу %s%n"
                     ,i
                     ,history.getReader().getName()
@@ -65,9 +64,9 @@ public class HistoryProvider {
         });
         System.out.println("Выберите возвращаемую книгу: ");
         int numHistory = scanner.nextInt();
-        listHistories.get(numHistory-1).setReturnDate(new Date());
+        listHistorys.get(numHistory-1).setReturnDate(new Date());
         System.out.println("Книга \""
-                +listHistories.get(numHistory-1).getBook().getTitle()
+                +listHistorys.get(numHistory-1).getBook().getTitle()
                 +"\" возвращена."
         );
     }  
