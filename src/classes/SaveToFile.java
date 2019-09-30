@@ -187,6 +187,10 @@ public class SaveToFile {
          } 
         return listHistorys;
     }   
+
+    void saveHistorys(List<History> listHistorys, List<Book> listBooks) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }
 
 

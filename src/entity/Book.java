@@ -15,35 +15,44 @@ public class Book implements Serializable{
     private String title;
     private String author;
     private int year;
+    private int quantity;
+    private int count;
     
     
     public Book() {
     }
-    public Book(String title, String author, int year) {
+    public Book(String title, String author, int year, int quantity) {
         this.title = title;
         this.author = author;
         this.year = year;
+        this.quantity = quantity;
+        this.count = quantity;
+        
     }
-    public void setTitle(String title) {
-        this.title = title;
-    }
-    public void setAuthor(String author) {
-        this.author = author;
-    }
-    public void setYear(int year) {
-        this.year = year;
-    } 
-    @Override
-    public String toString() {
-        return "Book{" + "title=" + title + ", author=" + author + ", year=" + year + '}';
-    }
+    
+
     public String getTitle() {
         return title;
     }
+
     public String getAuthor() {
         return author;
     }
+
     public int getYear() {
         return year;
-    } 
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public int getCount() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public void setCount(int i) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    
 }

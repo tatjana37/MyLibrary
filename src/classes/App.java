@@ -29,6 +29,7 @@ public class App {
     List<Book> listBooks = new ArrayList<>();
     List<Reader> listReaders = new ArrayList<>();
     List<History> listHistorys = new ArrayList<>();
+    private int numHistory;
     
     public App() {
        SaveToFile saveToFile = new SaveToFile();
@@ -50,7 +51,9 @@ public class App {
             System.out.println("4. Список читателей");
             System.out.println("5. Выдать книгу");
             System.out.println("6. Вернуть книгу");
-            System.out.println("Введите номер задачи:");
+            System.out.println("7. Список читаемых книг");
+            System.out.println("8. Список книг в наличии");
+            System.out.println(" Введите номер задачи:");
             String numberTask = scanner.nextLine();
             if(null != numberTask)
                 switch (numberTask) {
@@ -103,6 +106,21 @@ public class App {
                         historyProvider.returnBook(listHistorys);
                         saveToFile.saveHistorys(listHistorys);
                         break;
+                    case "7":
+                        System.out.println("Список выданных книг");
+                        i = 1;
+                        for(History h: listHistorys) {
+                            if(h.getReturnDate () == null) {
+                            System.out.println(i+" .  "+h.toString());
+                            i++;
+                            }
+                        }
+                        if (i < 2) {
+                            System.out.println("Нет выданных книг");
+                            System.out.println();
+                        }
+                        break;
+                        
                     default:
                         break;
                 }
