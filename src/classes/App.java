@@ -120,6 +120,14 @@ public class App {
                             System.out.println();
                         }
                         break;
+                        case "8":
+                        System.out.println("Список книг в наличии");
+                        i = 1;
+                        for(Book b : listBooks){
+                            System.out.println(i+". "+b.toString());
+                            i++;
+                        }
+                        break;
                         
                     default:
                         break;

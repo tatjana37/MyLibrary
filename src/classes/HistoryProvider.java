@@ -28,6 +28,8 @@ public class HistoryProvider {
                     ,listBooks.get(i).getTitle()
                     ,listBooks.get(i).getAuthor()
                     ,listBooks.get(i).getYear()
+                    ,listBooks.get(i).getQuantity()
+                    ,listBooks.get(i).getCount()
             );
             i++;
         }
@@ -36,7 +38,6 @@ public class HistoryProvider {
         Book book = listBooks.get(takeBookNum-1);
         book.setCount(book.getCount()-1);
         System.out.println("Список читателей: ");
-        int i=0;
         for(Reader r : listReaders){
             System.out.printf("%d. Имя и фамилия читателя: %s %s, email: %s%n"
                     ,i+1
@@ -53,18 +54,23 @@ public class HistoryProvider {
         history.setReader(reader);
         history.setTakeOn(new Date());
         return history;
-    }
+        }
+    
     public void returnBook(List<History> listHistorys){
+    
         System.out.println("Список читаемых книг");
-        int i=1;
-        listHistorys.stream().filter((history) -> (history.getReturnDate() == null)).forEach((history) -> {
+        int i = 1;
+        for(History history : listHistorys){
+        if(history.getReturnDate() == null){
             System.out.printf("%d. Читатлель %s %s читает книгу %s%n"
                     ,i
                     ,history.getReader().getName()
                     ,history.getReader().getLastname()
                     ,history.getBook().getTitle()
             );
-        });
+        }
+        i++;
+        }
         System.out.println("Выберите возвращаемую книгу: ");
         int numHistory = scanner.nextInt();
         listHistorys.get(numHistory-1).setReturnDate(new Date());
@@ -74,3 +80,4 @@ public class HistoryProvider {
         );
     }  
 }
+
