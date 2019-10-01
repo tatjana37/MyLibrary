@@ -15,6 +15,7 @@ public class Reader implements Serializable {
     private String name;
     private String lastname;
     private String email;
+    
     public Reader() {
     }
    public String getName() {
