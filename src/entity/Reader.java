@@ -6,18 +6,29 @@
 package entity;
 
 import java.io.Serializable;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
 /**
  *
  * @author User
  */
+@Entity
 public class Reader implements Serializable {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     private String name;
     private String lastname;
+    @Column(unique = true)
     private String email;
     
     public Reader() {
     }
+    
    public String getName() {
         return name;
     }
@@ -39,5 +50,13 @@ public class Reader implements Serializable {
     @Override
     public String toString() {
         return "Reader{" + "name=" + name + ", lastname=" + lastname + ", email=" + email + '}';
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 }

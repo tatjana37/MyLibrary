@@ -6,12 +6,20 @@
 package entity;
 
 import java.io.Serializable;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
 /**
  *
  * @author User
  */
+    @Entity
 public class Book implements Serializable{
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     private String title;
     private String author;
     private int year;
@@ -21,13 +29,21 @@ public class Book implements Serializable{
     
     public Book() {
     }
-    public Book(String title, String author, int year, int quantity) {
+     public Book(String title, String author, int year, int quantity) {
         this.title = title;
         this.author = author;
         this.year = year;
         this.quantity = quantity;
         this.count = quantity;
     }
+    public Long getId() {
+        return id;
+    }
+    public void setId(Long id) {
+        this.id = id;
+    }
+   
+    
     public String getTitle() {
         return title;
     }
@@ -50,17 +66,22 @@ public class Book implements Serializable{
         return quantity;
     }
     public void setQuantity(int quantity) {
-        this.setCount(quantity - this.quantity + count);
+
         this.quantity = quantity;
+        
     }
     @Override
     public String toString() {
         return "Book{" + "title=" + title + ", author=" + author + ", year=" + year + ", quantity=" + quantity +", count =" + count + '}';
     }
+
     public int getCount() {
-        return count;
+         return count;
     }
+
     public void setCount(int count) {
         this.count = count;
     }
-}
+    
+    
+    }
