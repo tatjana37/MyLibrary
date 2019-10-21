@@ -8,6 +8,7 @@ package classes;
 import entity.Book;
 import entity.History;
 import entity.Reader;
+import interfaces.Saveble;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -24,7 +25,8 @@ import java.util.logging.Logger;
  *
  * @author user
  */
-public class SaveToFile {
+public class SaveToFile implements Saveble {
+    @Override
     public void saveBooks(List<Book>listBooks) {
         FileOutputStream fileOutputStream = null;
         ObjectOutputStream objectOutputStream = null;
@@ -47,6 +49,7 @@ public class SaveToFile {
             }
         } 
    }
+    @Override
     public List<Book>loadBooks(){
         List<Book>listBooks = new ArrayList<>();
         FileInputStream fileInputStream = null; 
@@ -79,6 +82,7 @@ public class SaveToFile {
          } 
         return listBooks;
     }
+    @Override
      public void saveReaders(List<Reader>listReaders) {
         FileOutputStream fileOutputStream = null;
         ObjectOutputStream objectOutputStream = null;
@@ -97,10 +101,18 @@ public class SaveToFile {
                     objectOutputStream.close();
                 } catch (IOException ex) {
                     Logger.getLogger(SaveToFile.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+            }
+            if(fileOutputStream != null){
+                try {
+                    fileOutputStream.close();
+                } catch (IOException ex) {
+                    Logger.getLogger(SaveToFile.class.getName()).log(Level.SEVERE, "Ошибка освобождения ресурса fos", ex);
                 }
             }
         } 
    }
+    @Override
     public List<Reader>loadReaders(){
         List<Reader>listReaders = new ArrayList<>();
         FileInputStream fileInputStream = null; 
@@ -133,6 +145,7 @@ public class SaveToFile {
          } 
         return listReaders;
     }
+    @Override
     public void saveHistorys(List<History>listHistorys) {
         FileOutputStream fileOutputStream = null;
         ObjectOutputStream objectOutputStream = null;
@@ -150,11 +163,19 @@ public class SaveToFile {
                 try {
                     objectOutputStream.close();
                 } catch (IOException ex) {
-                    Logger.getLogger(SaveToFile.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(SaveToFile.class.getName()).log(Level.SEVERE, "Ошибка освобождения ресурса oos", ex);
+                    }
+            }
+            if(fileOutputStream != null){
+                try {
+                    fileOutputStream.close();
+                } catch (IOException ex) {
+                    Logger.getLogger(SaveToFile.class.getName()).log(Level.SEVERE, "Ошибка освобождения ресурса fos", ex);
                 }
             }
         } 
    }
+    @Override
     public List<History>loadHistorys(){
         List<History>listHistorys = new ArrayList<>();
         FileInputStream fileInputStream = null; 
@@ -188,10 +209,9 @@ public class SaveToFile {
         return listHistorys;
     }   
 
-    void saveHistorys(List<History> listHistorys, List<Book> listBooks) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+    
 }
+
 
 
 
