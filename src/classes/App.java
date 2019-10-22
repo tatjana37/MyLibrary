@@ -57,9 +57,8 @@ public class App {
             System.out.println("4. Список читателей");
             System.out.println("5. Выдать книгу");
             System.out.println("6. Вернуть книгу");
-            System.out.println("7. Список читаемых книг");
-            System.out.println("8. Список книг в наличии");
-            System.out.println(" Введите номер задачи:");
+            System.out.println("7. Список выданных книг");
+            System.out.println("Введите номер задачи:");
             String numberTask = scanner.nextLine();
             if(null != numberTask)
                 switch (numberTask) {

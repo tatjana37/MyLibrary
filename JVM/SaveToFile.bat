@@ -1,0 +1,1 @@
+start "" java -cp lib/* -jar SKTVp18Library.jar file

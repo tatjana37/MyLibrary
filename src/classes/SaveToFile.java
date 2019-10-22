@@ -16,7 +16,6 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
-
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -44,11 +43,21 @@ public class SaveToFile implements Saveble {
                 try {
                     objectOutputStream.close();
                 } catch (IOException ex) {
-                    Logger.getLogger(SaveToFile.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(SaveToFile.class.getName()).log(Level.SEVERE, "Ошибка освобождения ресурса oos", ex);
                 }
             }
-        } 
+         if(fileOutputStream != null){
+            try {
+                fileOutputStream.close();
+                } catch (IOException ex) {
+                    Logger.getLogger(SaveToFile.class.getName()).log(Level.SEVERE, "Ошибка освобождения ресурса fos", ex);
+                }
+                
+            }
+                
+         } 
    }
+   
     @Override
     public List<Book>loadBooks(){
         List<Book>listBooks = new ArrayList<>();
@@ -100,7 +109,7 @@ public class SaveToFile implements Saveble {
                 try {
                     objectOutputStream.close();
                 } catch (IOException ex) {
-                    Logger.getLogger(SaveToFile.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(SaveToFile.class.getName()).log(Level.SEVERE, "Ошибка освобождения ресурса oos", ex);
                     }
             }
             if(fileOutputStream != null){
